@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+  postgres:
+    image: 'postgres:14'
+    ports:
+    - 5432:5432
+    environment:
+      POSTGRES_USER: phoenix
+      POSTGRES_PASSWORD: phoenix
+      POSTGRES_DB: phoenix
+    volumes:
+    - ./pgdata:/var/lib/postgresql/data/
