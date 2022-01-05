@@ -2,10 +2,10 @@ import Config
 
 # Configure your database
 config :discuss, Discuss.Repo,
-  username: "postgres",
-  password: "postgres",
+  username: "phoenix",
+  password: "phoenix",
   hostname: "localhost",
-  database: "discuss_dev",
+  database: "phoenix",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 
