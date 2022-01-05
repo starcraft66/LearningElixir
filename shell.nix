@@ -6,8 +6,8 @@ let
   inherit (lib) optional optionals;
 
   erlang = beam.interpreters.erlangR24;
-  elixir = beam.packages.erlangR24.elixir_1_12;
-  nodejs = nodejs-12_x;
+  elixir = beam.packages.erlangR24.elixir_1_13;
+  nodejs = nodejs-16_x;
 in
 
 mkShell {
