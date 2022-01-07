@@ -9,7 +9,7 @@
 </ul>
 
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large waves-effect waves-light red">
+    <%= link to: Routes.topic_path(@conn, :new), class: "btn-floating btn-large waves-effect waves-light red" do %>
         <i class="material-icons">add</i>
-    </a>
+    <% end %>
 </div>
