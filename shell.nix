@@ -11,7 +11,7 @@ let
 in
 
 mkShell {
-  buildInputs = [cacert git erlang elixir cargo nodejs]
+  buildInputs = [cacert git erlang elixir cargo nodejs gnupg sops]
     ++ optional stdenv.isLinux inotify-tools
     ++ optionals stdenv.isDarwin (with darwin.apple_sdk.frameworks; [
       CoreFoundation
@@ -23,5 +23,9 @@ mkShell {
       alias mps="mix phx.server"
       alias test="mix test"
       alias c="iex -S mix"
+      echo Touch the YubiKey.
+      set -a
+      eval "$(sops --decrypt --output-type dotenv secrets/discuss.yaml)"
+      set +a
     '';
 }
