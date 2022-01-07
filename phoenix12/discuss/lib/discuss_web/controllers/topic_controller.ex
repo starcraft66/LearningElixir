@@ -9,9 +9,9 @@ defmodule DiscussWeb.TopicController do
   end
 
   def create(conn, %{"topic" => topic}) do
-    changeset = Topic.changeset(%Topic{}, topic)
-
-    case Repo.insert(changeset) do
+    Topic.changeset(%Topic{}, topic)
+    |> Repo.insert()
+    |> case do
       {:ok, _post} ->
         conn
         |> put_flash(:info, "Topic created!")
