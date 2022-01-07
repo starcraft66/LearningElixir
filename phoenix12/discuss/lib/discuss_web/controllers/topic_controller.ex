@@ -16,4 +16,9 @@ defmodule DiscussWeb.TopicController do
       {:error, changeset} -> render conn, "new.html", changeset: changeset
     end
   end
+
+  def index(conn, _params) do
+    topics = Repo.all(Topic)
+    render conn, "index.html", topics: topics
+  end
 end
