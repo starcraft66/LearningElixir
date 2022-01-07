@@ -10,6 +10,12 @@ import Config
 config :discuss,
   ecto_repos: [Discuss.Repo]
 
+# Ueberauth Github Config
+config :ueberauth, Ueberauth,
+  providers: [
+    github: { Ueberauth.Strategy.Github, [] }
+  ]
+
 # Configures the endpoint
 config :discuss, DiscussWeb.Endpoint,
   url: [host: "localhost"],

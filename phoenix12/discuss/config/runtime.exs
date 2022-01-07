@@ -12,6 +12,10 @@ if System.get_env("PHX_SERVER") && System.get_env("RELEASE_NAME") do
   config :discuss, DiscussWeb.Endpoint, server: true
 end
 
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("DISCUSS_GH_CLIENT_ID"),
+  client_secret: System.get_env("DISCUSS_GH_CLIENT_SECRET")
+
 if config_env() == :prod do
   database_url =
     System.get_env("DATABASE_URL") ||
