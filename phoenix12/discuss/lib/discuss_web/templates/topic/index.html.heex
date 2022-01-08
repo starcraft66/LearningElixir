@@ -4,6 +4,7 @@
     <%= for topic <- @topics do %>
         <li class="collection-item">
             <%= topic.title %>
+            <%= if @conn.assigns.user.id == topic.user_id do %>
             <div class="right">
                 <%= link to: Routes.topic_path(@conn, :edit, topic) do %>
                     Edit
@@ -12,6 +13,7 @@
                     Delete
                 <% end %>
             </div>
+            <% end %>
         </li>
     <% end %>
 </ul>
