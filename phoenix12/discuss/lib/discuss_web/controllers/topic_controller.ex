@@ -5,6 +5,7 @@ defmodule DiscussWeb.TopicController do
   import Ecto
 
   plug DiscussWeb.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
+  plug :check_topic_existence when action in [:update, :edit, :delete]
   plug :check_topic_owner when action in [:update, :edit, :delete]
 
   def new(conn, _params) do
@@ -75,6 +76,21 @@ defmodule DiscussWeb.TopicController do
       |> put_flash(:error, "You don't have permission to perform that action")
       |> redirect(to: Routes.topic_path(conn, :index))
       |> halt()
+    end
+  end
+
+  def check_topic_existence(conn, _params) do
+    %{params: %{"id" => topic_id}} = conn
+
+    Repo.get(Topic, topic_id)
+    |> case do
+      %Discuss.Topic{} ->
+        conn
+      nil ->
+        conn
+        |> put_flash(:error, "That topic doesn't exist!")
+        |> redirect(to: Routes.topic_path(conn, :index))
+        |> halt()
     end
   end
 end
