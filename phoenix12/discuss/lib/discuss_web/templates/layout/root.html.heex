@@ -12,9 +12,9 @@
   <body>
     <nav class= "light-blue">
       <div class="nav-wrapper container">
-      <a href="/" class="brand-logo">
+      <%= link to: Routes.topic_path(@conn, :index), class: "brand-logo" do %>
         Discussions
-      </a>
+      <% end %>
       <ul class="right">
         <%= if @conn.assigns[:user] do %>
           <li>
