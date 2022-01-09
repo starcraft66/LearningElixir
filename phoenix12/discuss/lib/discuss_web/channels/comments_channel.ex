@@ -10,7 +10,8 @@ defmodule DiscussWeb.CommentsChannel do
     topic_id = String.to_integer(topic_id)
     topic = Topic
     |> Repo.get(topic_id)
-    {:ok, %{}, assign(socket, :topic, topic)}
+    |> Repo.preload(:comments)
+    {:ok, %{comments: topic.comments}, assign(socket, :topic, topic)}
   end
 
   @impl true
